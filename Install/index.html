@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rush Upload</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="welcome-text">
+        Welcome to Rush Upload
+        <span>A non-intrusive upload script</span>
+    </div>
+    <div class="sub-title">Please, fill information below </div>
+    <div class="form">
+        <form method="post" id="myForm">
+          
+          <label for="url">* Site URL</label>
+          <input type="text" name="url" id="url" placeholder="Try http:// or https://">
+          <!-- connection settings-->
+          <label for="dbhost">* Database Host</label>
+          <input type="text" name="dbhost" id="dbhost" placeholder="normally localhost">
+  
+          <label for="dbuser">* Database Username</label>
+          <input type="text" name="dbuser" id="dbuser" placeholder="Insert your database root">
+  
+          <label for="dbpass">Database Password</label>
+          <input type="password" name="dbpass" id="dbpass" placeholder="Insert your database password">
+  
+          <label for="dbname">* Database Name</label>
+          <input type="text" name="dbname" id="dbname" placeholder="Insert your database name">
+          <!-- script configurations-->
+          <label for="updir">* Upload Directory</label>
+          <input type="text" name="updir" id="updir" placeholder="Local for save image files">
+          
+
+          <input type="submit" name="submit" value="Submit" id="submitBtn">
+
+          
+        </form>
+        <br/>
+        <div id="result"></div>
+    </div>
+    <script>
+        function submitForm() {
+            // Get form elements
+            var url = document.getElementById("url").value;
+            var dbhost = document.getElementById("dbhost").value;
+            var dbuser = document.getElementById("dbuser").value;
+            var dbpass = document.getElementById("dbpass").value;
+            var dbname = document.getElementById("dbname").value;
+            var updir = document.getElementById("updir").value;
+    
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+    
+            // Define the PHP script URL
+            var phpScript = "scripts/process.php";
+    
+            // Create a FormData object to send the form data
+            var formData = new FormData();
+            formData.append("url", url);
+            formData.append("dbhost", dbhost);
+            formData.append("dbuser", dbuser);
+            formData.append("dbpass", dbpass);
+            formData.append("dbname", dbname);
+            formData.append("updir", updir);
+    
+            // Configure the AJAX request
+            xhr.open("POST", phpScript, true);
+    
+            // Set up a callback function to handle the response
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    // Display the result in the "result" div
+                    if (response.message === "Form data processed successfully. Please wait...") {
+                        // Redirect to a new page after a delay (e.g., 2 seconds)
+                        setTimeout(function() {
+                            window.location.href = "/"; // Replace with the URL you want to redirect to
+                        }, 500);
+                    } else if (response.message === "Please fill in all the required fields.") {
+                        var url = document.getElementById("url");
+                        url.style.backgroundColor = '#ffc7d4'; // Change to your desired color
+
+                        var dbhost = document.getElementById("dbhost");
+                        dbhost.style.backgroundColor = '#ffc7d4'; // Change to your desired color
+
+                        var dbuser = document.getElementById("dbuser");
+                        dbuser.style.backgroundColor = '#ffc7d4'; // Change to your desired color
+
+                        var dbname = document.getElementById("dbname");
+                        dbname.style.backgroundColor = '#ffc7d4'; // Change to your desired color
+
+                        var updir = document.getElementById("updir");
+                        updir.style.backgroundColor = '#ffc7d4'; // Change to your desired color
+
+                        
+                    }
+                    document.getElementById("result").innerHTML = response.message;
+                }
+            };
+    
+            // Send the AJAX request
+            xhr.send(formData);
+        }
+    
+        // Add an event listener to the submit button's click event
+        document.getElementById("submitBtn").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            submitForm(); // Call the submitForm function to handle the submission
+        });
+    </script>
+    
+    
+    
+</body>
+</html>

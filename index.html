@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>.::Rush Upload::.</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A Non Intrusive Web Upload Script">
+  <meta name="keywords" content="upload, web, script, images, easy upload, fast upload script">
+  <meta name="author" content="Welisson Gomes">
+  
+  <!--  jQuery  -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!--  Rush Upload Plugin  -->
+  <script src="assets/js/rush-upload-plugin.js" defer></script>
+  <!--  cropper js  -->
+  <script src="assets/js/vendor/cropperjs/cropper.js"></script>
+  <link rel="stylesheet" href="assets/js/vendor/cropperjs/cropper.css" />
+  <!--  jQuery Ui for draggable feature  -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+  <!-- Favicon Section Diretório Correto -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#2aa287">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Google Font  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <img src="/assets/img/logo.svg" alt="Rush Upload" class="logo">
+  <h1 class="u-title">.::Rush Upload::.</h1>
+  <h2 class="u-subtitle">Script de Upload Não Intrusivo</h2>
+  <div id="dropzone">
+    <div class="i-container"><i class="u-icons icon-upload"></i></div>
+    <p>ARRASTE SUAS IMAGENS AQUI</p>
+    <input id="fileInput" type="file" multiple accept="image/jpeg">
+    <div id="thumbnails"></div>
+  </div>
+  <div id="feedbackContainer"></div>
+  <!-- <span><a class="h-link" href="/example-album" target="_blank">Clique aqui para visualizar o album</a></span> -->
+  <!-- <span><a class="h-install" href="/install" target="_blank">Primeira vez aqui? Clique para configurar </a></span> -->
+</body>
+</html>
